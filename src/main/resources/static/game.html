@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2</title>
+</head>
+<style>
+
+    @keyframes color-change {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    body {
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        animation: color-change 15s ease infinite;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+
+    .wrapper {
+        width: 90vw;
+        height: 50vw;
+        /*padding: 1vw;*/
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .col {
+        width: 30vw;
+    }
+
+    .row {
+        height: 10vw;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .square {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 4%;
+        font-size: x-large;
+        background-color: hotpink;
+        margin: 1vw;
+    }
+
+    .square:hover {
+        opacity: 0.7;
+        box-shadow: 3px 3px 5px 1px yellowgreen;
+    }
+
+    button {
+        color: red;
+        background-color: yellowgreen;
+    }
+
+    button:hover {
+        opacity: 0.7;
+        box-shadow: 3px 3px 5px 1px purple;
+    }
+</style>
+<script>
+    var turn = 0;
+    var board = [[null, null, null], [null, null, null], [null, null, null]];
+    var end = false;
+
+    function play(x, y, square) {
+        const char = turn % 2 === 0 ? 'X' : 'O';
+        const color = turn % 2 === 0 ? 'cyan' : 'purple';
+        if (!board[x][y] && !end) {
+            square.innerText = char;
+            square.style.color = color;
+            board[x][y] = char;
+            document.getElementById('turn').innerText = 'Turn ' + (++turn + 1)
+            for (let i = 0; i < 3; i++) {
+                if (checkEnd(board[i][0], board[i][1], board[i][2]) ||
+                    checkEnd(board[0][i], board[1][i], board[2][i])) {
+                    end = true;
+                }
+            }
+            if (checkEnd(board[0][0], board[1][1], board[2][2]) ||
+                checkEnd(board[0][2], board[1][1], board[2][0])) {
+                end = true;
+            }
+            if (end) {
+                document.getElementById('turn').innerText = 'Player ' + ((turn - 1) % 2 + 1) + ' won!'
+            } else if (turn === 9) {
+                end = true
+                document.getElementById('turn').innerText = 'Draw: No Winner!'
+            }
+        }
+    }
+
+    function checkEnd(a, b, c) {
+        if (a && b && c) {
+            if (a === b && a === c && b === c) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+</script>
+<body>
+<div class="wrapper">
+    <div class="col">
+        <div class="row">
+            <div class="square col" onclick="play(0,0,this)"></div>
+            <div class="square col" onclick="play(1,0,this)"></div>
+            <div class="square col" onclick="play(2,0,this)"></div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="row">
+            <div class="square col" onclick="play(0,1,this)"></div>
+            <div class="square col" onclick="play(1,1,this)"></div>
+            <div class="square col" onclick="play(2,1,this)"></div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="row">
+            <div class="square col" onclick="play(0,2,this)"></div>
+            <div class="square col" onclick="play(1,2,this)"></div>
+            <div class="square col" onclick="play(2,2,this)"></div>
+        </div>
+    </div>
+    <p style="color: #eaeded" id="turn">Turn 1</p>
+    <button style="padding: 0.5% 1%" onclick="location.reload();">reset</button>
+</div>
+</body>
+</html>

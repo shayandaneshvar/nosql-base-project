@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NOSQL Project</title>
+</head>
+<style>
+
+    @keyframes color-change {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0 50%;
+        }
+    }
+
+    body {
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        animation: color-change 15s ease infinite;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+
+    .wrapper {
+        width: 90vw;
+        height: 50vw;
+        /*padding: 1vw;*/
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .col {
+        width: 30vw;
+    }
+
+    .row {
+        height: 10vw;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .square {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 4%;
+        font-size: x-large;
+        background-color: yellowgreen;
+        color: blueviolet;
+        margin: 1vw;
+    }
+
+    .square:hover {
+        opacity: 0.7;
+        box-shadow: 3px 3px 5px 1px yellowgreen;
+    }
+
+    button {
+        color: red;
+        background-color: yellowgreen;
+    }
+
+    button:hover {
+        opacity: 0.7;
+        box-shadow: 3px 3px 5px 1px purple;
+    }
+
+    a {
+        text-decoration: none;
+    }
+</style>
+<script>
+
+</script>
+<body>
+<div class="wrapper">
+    <div class="col">
+        <div class="row">
+            <a class="square col" href="https://docs.google.com/document/d/1d_ms1PIGhwxW3SR_bIfaac5k1VtI6tRreLF8Xy3wvlE/edit?usp=sharing">
+                <div>Project Description</div>
+            </a>
+        </div>
+    </div>
+    <div class="col">
+        <div class="row">
+            <a class="square col" href="./swagger-ui.html">
+                <div>API Documents</div>
+            </a>
+        </div>
+    </div>
+    <div class="col">
+        <div class="row">
+            <a class="square col" href="./h2-console">
+                <div>H2 Database Instance</div>
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
